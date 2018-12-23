@@ -1,7 +1,7 @@
 {
-  "name": "include-html",
+  "name": "load-html",
   "version": "1.0.0",
-  "description": "include HTML code inside HTML pages using a custom tag `include-html` to load content dynamically",
+  "description": "include HTML code inside HTML pages using a custom tag `load-html` to load content dynamically",
   "main": "index.js",
   "scripts": {
     "example": "http-server example",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fibo/include-html.git"
+    "url": "git+https://github.com/fibo/load-html.git"
   },
   "keywords": [
     "include",
@@ -20,9 +20,9 @@
   "author": "Gianluca Casati (http://g14n.info)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fibo/include-html/issues"
+    "url": "https://github.com/fibo/load-html/issues"
   },
-  "homepage": "https://g14n.info/include-html",
+  "homepage": "https://g14n.info/load-html",
   "dependencies": {},
   "devDependencies": {}
 }

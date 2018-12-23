@@ -1,6 +1,6 @@
-# include-html
+# load-html
 
-> include HTML code inside HTML pages using a custom tag `include-html` to load content dynamically
+> include HTML code inside HTML pages using a custom tag `load-html` to load content dynamically
 
 [Usage](#usage) |
 [Annotated source](#annotated-source) |
@@ -16,12 +16,12 @@ Start with your *index.html*
   <head>
   </head>
   <body>
-    <include-html src="helloWorld.html">Loading...</include-html>
+    <load-html src="helloWorld.html">Loading...</load-html>
   </body>
 </html>
 ```
 
-Content inside `<include-html>` custom HTML tag is optional.
+Content inside `<load-html>` custom HTML tag is optional.
 
 Create files *helloWorld.html* and *linkToHomepage.html* in the same folder.
 
@@ -30,22 +30,22 @@ Create files *helloWorld.html* and *linkToHomepage.html* in the same folder.
 
 <h1>Hello World</h1>
 
-<include-html src="linkToHomepage.html"></include-html>
+<load-html src="linkToHomepage.html"></load-html>
 ```
 
 ```html
 <!-- linkToHomepage.html -->
 
 <p>
-  This content was loaded by <a href="https://g14n.info/include-html">include-html</a>.
+  This content was loaded by <a href="https://g14n.info/load-html">load-html</a>.
 </p>
 ```
 
-Import `includeHtml` function some how, for example, add the following tag
+Import `loadHtml` function some how, for example, add the following tag
 to your *index.html*:
 
 ```html
-<script src="https://unpkg.com/include-html"></script>
+<script src="https://unpkg.com/load-html"></script>
 ```
 
 Then invoke it on window load, for instance add the following snippet to your *index.html*:
@@ -63,20 +63,20 @@ window.addEventListener('load', function () {
 Start with attribution comment: web site and license.
 
 ```javascript
-// https://g14n.info/include-html License: MIT
+// https://g14n.info/load-html License: MIT
 ```
 
-Just define a global *includeHtml* function.
+Just define a global *loadHtml* function.
 
 ```javascript
-function includeHtml () {
+function loadHtml () {
 ```
 
-Select all `include-html` tags. Note the **loaded** attribute, used to achieve
+Select all `load-html` tags. Note the **loaded** attribute, used to achieve
 recursive loading.
 
 ```javascript
-  var nodes = document.querySelectorAll('include-html:not([loaded])');
+  var nodes = document.querySelectorAll('load-html:not([loaded])');
   var toBeLoaded = nodes.length;
 ```
 
@@ -98,7 +98,7 @@ Keep track of number of DOM nodes loaded, then try to repeat recursively.
 ```javascript
         toBeLoaded--;
         if (toBeLoaded == 0) {
-          includeHtml();
+          loadHtml();
         }
       });
 ```
