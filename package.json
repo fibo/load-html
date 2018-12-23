@@ -1,6 +1,6 @@
 {
   "name": "include-html",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "include HTML code inside HTML pages using a custom tag `include-html` to load content dynamically",
   "main": "index.js",
   "scripts": {
