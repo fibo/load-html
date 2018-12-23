@@ -1,0 +1,29 @@
+{
+  "name": "include-html",
+  "version": "1.0.0",
+  "description": "include HTML code inside HTML pages using a custom tag `include-html` to load content dynamically",
+  "main": "index.js",
+  "scripts": {
+    "example": "http-server example",
+    "markdown2code": "markdown2code -l javascript README.md > ${npm_package_main}",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fibo/include-html.git"
+  },
+  "keywords": [
+    "include",
+    "html"
+  ],
+  "author": "Gianluca Casati (http://g14n.info)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fibo/include-html/issues"
+  },
+  "homepage": "https://g14n.info/include-html",
+  "devDependencies": {
+    "http-server": "^0.11.1",
+    "markdown2code": "^1.0.2"
+  }
+}

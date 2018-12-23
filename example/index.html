@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+  </head>
+  <body>
+    <include-html src="helloWorld.html">Loading...</include-html>
+
+    <script>
+// https://g14n.info/include-html License: MIT
+function includeHtml () {
+  var includes = document.querySelectorAll('include-html:not([loaded])');
+  var toBeLoaded = includes.length;
+  includes.forEach(function (node) {
+    try {
+      var loader = new XMLHttpRequest();
+      loader.addEventListener('load', function loadHtml () {
+        toBeLoaded--;
+        if (loader.status == 200) {
+          node.innerHTML = loader.responseText;
+          node.setAttribute('loaded', true);
+        }
+      });
+      loader.open('GET', node.getAttribute('src'), true);
+      loader.send();
+    } catch (e) {
+      console.error(e);
+      node.setAttribute('error', e);
+    }
+  })
+}
+    </script>
+    <script>
+window.addEventListener('load', function () {
+  includeHtml();
+})
+    </script>
+  </body>
+</html>
