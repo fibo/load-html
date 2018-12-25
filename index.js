@@ -24,3 +24,4 @@ function loadHtml () {
     }
   })
 }
+window.loadHtml = loadHtml;
