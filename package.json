@@ -1,6 +1,6 @@
 {
   "name": "load-html",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "include HTML code inside HTML pages using a custom tag `load-html` to load content dynamically",
   "main": "index.js",
   "scripts": {
