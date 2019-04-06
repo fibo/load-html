@@ -4,7 +4,8 @@
   "description": "include HTML code inside HTML pages using a custom tag `load-html` to load content dynamically",
   "main": "index.js",
   "scripts": {
-    "example": "http-server example",
+    "example_usage": "http-server examples/usage",
+    "example_webcomponents-template": "http-server examples/webcomponents-template",
     "markdown2code": "markdown2code -l javascript README.md > ${npm_package_main}",
     "postversion": "git push origin v${npm_package_version}; npm publish; git push origin master",
     "test": "echo \"Error: no test specified\" && exit 1"

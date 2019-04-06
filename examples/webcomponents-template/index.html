@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+  <head>
+    <title>load-html webcomponents template example</title>
+  </head>
+  <body>
+    <load-html src="my-paragraph.template.html">Loading...</load-html>
+
+    <script src="https://unpkg.com/load-html"></script>
+
+    <my-paragraph></my-paragraph>
+  
+    <script>
+      window.addEventListener('load', function () {
+        loadHtml(function (nodes) {
+          // Get all templates successfully loaded, with a <template> tag as first child.
+          nodes.forEach(node => {
+            if (node.getAttribute('error')) {
+              return
+            }
+
+            if (node.firstChild && node.firstChild.tagName == 'TEMPLATE') {
+              const templateNode = node.firstChild
+
+              const id = templateNode.id
+
+              // It sounds a good convention to have template.id === custom element tag name
+              customElements.define(id,
+                class extends HTMLElement {
+                  constructor() {
+                    super()
+                    const template = templateNode.content;
+                    const shadowRoot = this.attachShadow({mode: 'open'}).appendChild(template.cloneNode(true));
+                  }
+                }
+              )
+            }
+          })
+        });
+      })
+    </script>
+  </body>
+</html>
