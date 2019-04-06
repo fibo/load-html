@@ -1,5 +1,6 @@
-// https://g14n.info/load-html License: MIT
-function loadHtml () {
+// https://g14n.info/load-html
+// License: MIT
+function loadHtml (callback) {
   var nodes = document.querySelectorAll('load-html:not([loaded])');
   var toBeLoaded = nodes.length;
   nodes.forEach(function (node) {
@@ -12,7 +13,11 @@ function loadHtml () {
         node.setAttribute('loaded', true);
         toBeLoaded--;
         if (toBeLoaded == 0) {
-          loadHtml();
+          if (typeof callback == 'function') {
+            callback(nodes)
+          }
+
+          loadHtml(callback);
         }
       });
       loader.open('GET', node.getAttribute('src'), true);

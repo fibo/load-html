@@ -2,11 +2,21 @@
 
 > include HTML code inside HTML pages using a custom tag `load-html` to load content dynamically
 
+[Features](#features) |
 [Usage](#usage) |
+[API](#api) |
 [Annotated source](#annotated-source) |
 [License](#license)
 
+## Features
+
+* Load HTML snippets from remote URLs, recursively.
+* Can be used to load Web Components, as an alternative to HTML imports: see [Web Components Template example](https://github.com/fibo/load-html/tree/master/examples/webcomponents-template).
+* Supports IE 10.
+
 ## Usage
+
+See [usage example folder](https://github.com/fibo/load-html/tree/master/examples/usage) or read below.
 
 Start with your *index.html*
 
@@ -59,7 +69,11 @@ Then invoke it on window load, for instance add the following snippet to your *i
 </script>
 ```
 
-You can also pass an optional callback function as argument:
+## API
+
+### `loadHtml(callback)`
+
+You can pass an **optional** callback function as argument:
 
 * It will be executed when `<load-html />` nodes are loaded.
 * Loaded nodes will be passed as first argument.
@@ -70,6 +84,30 @@ You can also pass an optional callback function as argument:
   window.addEventListener('load', function () {
     loadHtml(function (nodes) {
       console.log('load-html nodes loaded: ' + nodes.length)
+    });
+  })
+</script>
+```
+
+**NOTA BENE** The `nodes` argument passed to callback is a [NodeList](https://developer.mozilla.org/docs/Web/API/NodeList).
+
+> Although `NodeList` is not an `Array`, it is possible to iterate over it with `forEach()`
+
+For example, using something like `nodes.filter(node => !node.getAttribute('error'))` will fail.
+
+However you may want to filter those nodes that did not loaded correctly. Do something like
+
+```html
+<script>
+  window.addEventListener('load', function () {
+    loadHtml(function (nodes) {
+      nodes.forEach(node => {
+        if (node.getAttribute('error')) {
+          return
+        }
+
+        // Do something with your node...
+      })
     });
   })
 </script>
