@@ -14,6 +14,7 @@
 * Can be used to load Web Components, as an alternative to HTML imports: see [Web Components Template example](https://github.com/fibo/load-html/tree/master/examples/webcomponents-template).
 * Supports IE 10.
 * Since it uses `innerHTML` it will **not** execute *script* tags.
+* Can be used on modern browsers to load <em>WebComponents</em>, see [WebComponents example folder](https://github.com/fibo/load-html/tree/master/examples/web-components)
 
 ## Usage
 
