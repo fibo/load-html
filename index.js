@@ -10,8 +10,9 @@ function loadHtml (callback) {
         if (loader.status == 200) {
           node.innerHTML = loader.responseText;
         }
-        node.setAttribute('loaded', true);
+        node.setAttribute('data-loaded', true);
         toBeLoaded--;
+
         if (toBeLoaded == 0) {
           if (typeof callback == 'function') {
             callback(nodes)
@@ -22,10 +23,10 @@ function loadHtml (callback) {
       });
       loader.open('GET', node.getAttribute('src'), true);
       loader.send();
-    } catch (e) {
-      console.error(e);
-      node.setAttribute('error', e);
-      node.setAttribute('loaded', true);
+    } catch (error) {
+      console.error(error);
+      node.setAttribute('data-error', error.message);
+      node.setAttribute('data-loaded', true);
     }
   })
 }
