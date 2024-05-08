@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "example_usage": "http-server examples/usage",
-    "example_webcomponents-template": "http-server examples/webcomponents-template",
+    "example_web-components": "http-server examples/web-components",
     "markdown2code": "markdown2code -l javascript README.md > ${npm_package_main}",
     "postversion": "git push origin v${npm_package_version}; npm publish; git push origin master",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,12 +18,12 @@
     "include",
     "html"
   ],
-  "author": "Gianluca Casati (http://g14n.info)",
+  "author": "Gianluca Casati (https://fibo.github.io)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/fibo/load-html/issues"
   },
-  "homepage": "https://g14n.info/load-html",
+  "homepage": "https://fibo.github.io/load-html",
   "dependencies": {},
   "devDependencies": {}
 }

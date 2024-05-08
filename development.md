@@ -7,4 +7,4 @@ Code is in *README.md*'s **Annotated source** section.
 * Deploy: `npm version patch|minor|major`
 * Examples:
   - Usage: `npm run example_usage`
-  - Webcomponents template: `npm run example_webcomponents-template`
+  - Webcomponents: `npm run example_web-components`

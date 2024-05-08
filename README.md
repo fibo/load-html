@@ -11,7 +11,7 @@
 ## Features
 
 * Load HTML snippets from remote URLs, recursively.
-* Can be used to load Web Components, as an alternative to HTML imports: see [Web Components Template example](https://github.com/fibo/load-html/tree/master/examples/webcomponents-template).
+* Can be used to load Web Components, as an alternative to HTML imports: see [WebComponents example](https://github.com/fibo/load-html/tree/master/examples/web-components).
 * Supports IE 10.
 * Since it uses `innerHTML` it will **not** execute *script* tags.
 * Can be used on modern browsers to load <em>WebComponents</em>, see [WebComponents example folder](https://github.com/fibo/load-html/tree/master/examples/web-components)
@@ -50,7 +50,7 @@ Create files *helloWorld.html* and *linkToHomepage.html* in the same folder.
 <!-- linkToHomepage.html -->
 
 <p>
-  This content was loaded by <a href="https://g14n.info/load-html">load-html</a>.
+  This content was loaded by <a href="https://fibo.github.io/load-html">load-html</a>.
 </p>
 ```
 
@@ -65,7 +65,7 @@ Then invoke it on window load, for instance add the following snippet to your *i
 
 ```html
 <script>
-  window.addEventListener('load', function () {
+  window.addEventListener('load', () => {
     loadHtml();
   })
 </script>
@@ -83,8 +83,8 @@ You can pass an **optional** callback function as argument:
 
 ```html
 <script>
-  window.addEventListener('load', function () {
-    loadHtml(function (nodes) {
+  window.addEventListener('load', () => {
+    loadHtml((nodes) => {
       console.log('load-html nodes loaded: ' + nodes.length)
     });
   })
@@ -101,12 +101,10 @@ However you may want to filter those nodes that did not loaded correctly. Do som
 
 ```html
 <script>
-  window.addEventListener('load', function () {
-    loadHtml(function (nodes) {
+  window.addEventListener('load', () => {
+    loadHtml((nodes) => {
       nodes.forEach(node => {
-        if (node.getAttribute('error')) {
-          return
-        }
+        if (node.getAttribute('error')) return;
 
         // Do something with your node...
       })
@@ -116,13 +114,6 @@ However you may want to filter those nodes that did not loaded correctly. Do som
 ```
 
 ## Annotated source
-
-Start with attribution comment: web site and license.
-
-```javascript
-// https://g14n.info/load-html
-// License: MIT
-```
 
 Just define a global *loadHtml* function.
 
@@ -140,13 +131,11 @@ Select all `<load-html />` tags. Note the **loaded** attribute is used to achiev
 Fetch the HTML content for each node.
 
 ```javascript
-  nodes.forEach(function (node) {
+  nodes.forEach((node) => {
     try {
       var loader = new XMLHttpRequest();
-      loader.addEventListener('load', function loadHtml () {
-        if (loader.status == 200) {
-          node.innerHTML = loader.responseText;
-        }
+      loader.addEventListener('load', () => {
+        if (loader.status == 200) node.innerHTML = loader.responseText;
 ```
 
 Keep track of number of DOM nodes loaded, then try to repeat recursively. When done, invoke *callback*, if any.
@@ -156,10 +145,7 @@ Keep track of number of DOM nodes loaded, then try to repeat recursively. When d
         toBeLoaded--;
 
         if (toBeLoaded == 0) {
-          if (typeof callback == 'function') {
-            callback(nodes)
-          }
-
+          if (typeof callback == 'function') callback(nodes);
           loadHtml(callback);
         }
       });
@@ -192,4 +178,4 @@ window.loadHtml = loadHtml;
 
 ## License
 
-[MIT](http://g14n.info/mit-license)
+[MIT](https://fibo.github.io/mit-license)
